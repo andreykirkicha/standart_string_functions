@@ -35,3 +35,9 @@ int str_cmp( const char *str1, const char *str2 );
     \param[in] src - source string
 */
 char *str_cat( char *dest, const char *src );
+
+/*!
+    Analog of strcat (<string.h>)
+    \param[in] str1 - source string
+*/
+char *str_dup( const char *str1 );

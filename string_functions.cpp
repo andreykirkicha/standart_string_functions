@@ -1,19 +1,26 @@
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 char *str_cpy( char *dest, const char *src )
 {
-    int i = 0;
+    if (dest == NULL or src == NULL)
+        return NULL;
 
     do
     {
-        dest[i] = src[i];
-    } while (src[i++] != '\0');
+        *dest = *src;
+        dest++;
+    } while (*(src++) != '\0');
 
     return dest;
 }
 
 char *str_chr( const char *str, int sym )
 {
+    if (str == NULL)
+        return NULL;
+
     char *ptr = (char *)str;
 
     while (*ptr != sym && *ptr != '\0')
@@ -27,29 +34,62 @@ char *str_chr( const char *str, int sym )
 
 int str_len( const char *str )
 {
+    if (str == NULL)
+        return 0;
+
     return str_chr(str, '\0') - str;
 }
 
 int str_cmp( const char *str1, const char *str2 )
 {
-    int i = 0;
+    if (str1 == NULL || str2 == NULL)
+        return 0;
 
-    while (str1[i] == str2[i] && !(str1[i] == '\0' || str2[i] == '\0'))
-        i++;
+    while (*str1 == *str2 && *str1 != '\0')
+    {
+        str1++;
+        str2++;
+    }
 
-    return str1[i] - str2[i];
+    return *str1 - *str2;
 }
 
 char *str_cat( char *dest, const char *src )
 {
-    int i = str_len(dest);
+    if (dest == NULL || src == NULL)
+        return NULL;
 
-    int j = 0;
+    char *ptr = str_chr(dest, '\0');
 
-    while (src[j] != '\0')
-        dest[i++] = src[j++];
+    while (*src != '\0')
+    {
+        *ptr = *src;
+        ptr++;
+        src++;
+    }
 
-    dest[i] = '\0';
+    *ptr = '\0';
 
     return dest;
+}
+
+char *str_dup( const char *str1 )
+{
+    if (str1 == NULL)
+        return NULL;
+
+    char *str2 = (char *)malloc(sizeof(str1));
+
+    if (str2 == NULL)
+        return NULL;
+
+    char *ptr = str2;
+
+    do
+    {
+        *ptr = *str1;
+        ptr++;
+    } while (*(str1++) != '\0');
+
+    return str2;
 }

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "string_functions.hpp"
 
 int main()
@@ -25,15 +26,15 @@ int main()
     printf("\t\t src:\t \"%s\"\n\n", str1);
 
     printf("\t after");
-    printf("\t dest:\t \"%s\"\n\n\n", str2);
+    printf("\t dest:\t \"%s\"\n\n", str2);
 
-    if (!strcmp(str_cpy(str2, str1), strcpy(test_str2, str1)))
+    if (strcmp(str_cpy(str2, str1), strcpy(test_str2, str1)))
         printf("\t OK\n\n\n");
     else
         printf("\t FAILED\n\n\n");
 
     printf("STRCHR");
-    printf("\t \"%s\"\n\n\n", str_chr(str1, 'u'));
+    printf("\t \"%s\"\n\n", str_chr(str1, 'u'));
 
     if (str_chr(str1, 'u') == strchr(str1, 'u'))
         printf("\t OK\n\n\n");
@@ -44,7 +45,7 @@ int main()
     printf("STRCMP");
     printf("\t str1: \"%s\"\n", str1);
     printf("\t str2: \"%s\"\n", str2);
-    printf("\t %d\n\n\n", str_cmp(str1, str2));
+    printf("\t %d\n\n", str_cmp(str1, str2));
 
     if (str_cmp(str1, str2) == strcmp(str1, test_str2))
         printf("\t OK\n\n\n");
@@ -59,52 +60,29 @@ int main()
     printf("\t\t src:\t \"%s\"\n\n", str3);
 
     printf("\t after");
-    printf("\t dest:\t \"%s\"\n", str2);
+    printf("\t dest:\t \"%s\"\n\n", str2);
 
     if (!strcmp(str_cat(str2, str3), strcat(test_str2, str3)))
         printf("\t OK\n\n\n");
     else
         printf("\t FAILED\n\n\n");
 
-/*
-    char str4[] = "I'm not just a string, I'm something more";
 
-    printf("STRLEN\n\n");
-    printf("\t length of \"%s\" is %d\n\n", str1, strlen(str1));
-
-
-    printf("STRCPY\n\n");
-    printf("\t before");
-
-    printf("\t dest: \"%s\"\n", str4);
-    printf("\t\t src: \"%s\"\n\n", str1);
-
-    strcpy(str4, str1);
-
-    printf("\t after");
-    printf("\t dest: \"%s\"\n\n", str4);
-
-
-    printf("STRCHR\n");
-    printf("\t \"%s\"\n\n", strchr(str1, 'u'));
-
-
-    printf("STRCMP\n");
+    printf("STRDUP");
     printf("\t str1: \"%s\"\n", str1);
-    printf("\t str2: \"%s\"\n", str4);
-    printf("\t %d\n\n", strcmp(str1, str4));
 
+    char *duplicate = str_dup(str1);
+    char *test_duplicate = strdup(str1);
 
-    printf("STRCAT\n");
-    printf("\t before");
+    printf("\t str2: \"%s\"\n\n", duplicate);
 
-    printf("\t dest: \"%s\"\n", str4);
-    printf("\t\t src: \"%s\"\n\n", str3);
+    if (!strcmp(duplicate, test_duplicate))
+        printf("\t OK\n\n\n");
+    else
+        printf("\t FAILED\n\n\n");
 
-    strcat(str4, str3);
+    free(duplicate);
+    free(test_duplicate);
 
-    printf("\t after");
-    printf("\t dest: \"%s\"\n\n", str4);
-*/
     return 0;
 }
