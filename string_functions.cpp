@@ -1,6 +1,4 @@
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 char *str_cpy( char *dest, const char *src )
 {
