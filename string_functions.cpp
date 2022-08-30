@@ -76,7 +76,7 @@ char *str_dup( const char *str1 )
     if (str1 == NULL)
         return NULL;
 
-    char *str2 = (char *)malloc(sizeof(str1));
+    char *str2 = (char *)calloc(str_len(str1) + 1, sizeof(char));
 
     if (str2 == NULL)
         return NULL;
