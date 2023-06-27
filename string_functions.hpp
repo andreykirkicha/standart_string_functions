@@ -41,3 +41,5 @@ char *str_cat( char *dest, const char *src );
     \param[in] str1 - source string
 */
 char *str_dup( const char *str1 );
+
+int str_str(const char *text, const char *pattern);

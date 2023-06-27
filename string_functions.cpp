@@ -91,3 +91,32 @@ char *str_dup( const char *str1 )
 
     return str2;
 }
+
+int str_str(const char *text, const char *pattern)
+{
+    const char *text_variable = text;
+
+    unsigned pattern_len = str_len(pattern);
+    if (pattern_len == 0)
+        return 0;
+
+    while (char *start_sym = str_chr(text_variable, pattern[0])) 
+    {
+        int i = 0;
+
+        while (i < pattern_len)
+        {
+            if (start_sym[i] != pattern[i])
+                break;
+
+            i++;
+        }
+
+        if (i == pattern_len)
+            return start_sym - text;
+            
+        text_variable = start_sym + 1;
+    }
+
+    return -1;
+}
